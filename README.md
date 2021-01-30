@@ -2,7 +2,8 @@
 
 [![Build](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/workflows/Docker/badge.svg)](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/actions?query=workflow%3ADocker)
 
-itzg\
+forked from [itzg/docker-minecraft-bedrock-server](https://github.com/itzg/docker-minecraft-bedrock-server)
+
 [![Discord](https://img.shields.io/discord/660567679458869252?label=Discord&logo=discord)](https://discord.gg/ScbTrAw)
 [![](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoffee.com/itzg)
 
