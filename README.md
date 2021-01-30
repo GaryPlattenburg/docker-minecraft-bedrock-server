@@ -1,6 +1,6 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/garyplattenburg/minecraft-bedrock-server.svg)](https://hub.docker.com/r/garyplattenburg/minecraft-bedrock-server/)
 
-[![Build](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/workflows/Build/badge.svg)](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/actions?query=workflow%3ABuild)
+[![Build](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/workflows/Docker/badge.svg)](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/actions?query=workflow%3ADocker)
 
 itzg\
 [![Discord](https://img.shields.io/discord/660567679458869252?label=Discord&logo=discord)](https://discord.gg/ScbTrAw)
