@@ -1,6 +1,8 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/itzg/minecraft-bedrock-server.svg)](https://hub.docker.com/r/itzg/minecraft-bedrock-server/)
-[![GitHub Issues](https://img.shields.io/github/issues-raw/itzg/docker-minecraft-bedrock-server.svg)](https://github.com/itzg/docker-minecraft-bedrock-server/issues)
-[![Build](https://github.com/itzg/docker-minecraft-bedrock-server/workflows/Build/badge.svg)](https://github.com/itzg/docker-minecraft-bedrock-server/actions?query=workflow%3ABuild)
+[![Docker Pulls](https://img.shields.io/docker/pulls/garyplattenburg/minecraft-bedrock-server.svg)](https://hub.docker.com/r/garyplattenburg/minecraft-bedrock-server/)
+
+[![Build](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/workflows/Build/badge.svg)](https://github.com/garyplattenburg/docker-minecraft-bedrock-server/actions?query=workflow%3ABuild)
+
+itzg\
 [![Discord](https://img.shields.io/discord/660567679458869252?label=Discord&logo=discord)](https://discord.gg/ScbTrAw)
 [![](https://img.shields.io/badge/Donate-Buy%20me%20a%20coffee-orange.svg)](https://www.buymeacoffee.com/itzg)
 
