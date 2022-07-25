@@ -2,10 +2,13 @@
 
 set -eo pipefail
 
+: "${TMP_DIR:=/tmp}"
+
 if [[ ${DEBUG^^} = TRUE ]]; then
   set -x
   curlArgs=(-v)
   echo "DEBUG: running as $(id -a) with $(ls -ld /data)"
+  echo "       current directory is $(pwd)"
 fi
 
 downloadPage=https://www.minecraft.net/en-us/download/server/bedrock
@@ -21,34 +24,35 @@ if [[ ${EULA^^} != TRUE ]]; then
 fi
 
 case ${VERSION^^} in
-  1.11)
-    VERSION=1.11.4.2
-    ;;
   1.12)
     VERSION=1.12.0.28
     ;;
   1.13)
     VERSION=1.13.0.34
     ;;
-  1.14|PREVIOUS)
+  1.14)
     VERSION=1.14.60.5
-    ;;
-  1.16.1)
-    VERSION=1.16.1.02
     ;;
   1.16)
     VERSION=1.16.20.03
     ;;
+  1.17)
+    VERSION=1.17.41.01
+    ;;
+  1.17.41)
+    VERSION=1.17.41.01
+    ;;
+  1.18|PREVIOUS)
+    VERSION=1.18.33.02
+    ;;
   LATEST)
     echo "Looking up latest version..."
-    for a in data-platform ; do
-      for i in {1..3}; do
-        DOWNLOAD_URL=$(restify --user-agent=itzg/minecraft-bedrock-server --headers "accept-language:*" --attribute=${a}=serverBedrockLinux ${downloadPage} 2> restify.err | jq -r '.[0].href' || echo '')
-        if [[ ${DOWNLOAD_URL} ]]; then
-          break 2
-        fi
-        sleep 1
-      done
+    for i in {1..3}; do
+      DOWNLOAD_URL=$(restify --user-agent=itzg/minecraft-bedrock-server --headers "accept-language:*" --attribute=data-platform=serverBedrockLinux ${downloadPage} 2> restify.err | jq -r '.[0].href' || echo '')
+      if [[ ${DOWNLOAD_URL} ]]; then
+        break 2
+      fi
+      sleep 1
     done
     if [[ -z ${DOWNLOAD_URL} ]]; then
       DOWNLOAD_URL=$(curl -s https://mc-bds-helper.vercel.app/api/latest)
@@ -83,7 +87,8 @@ if [ ! -f "bedrock_server-${VERSION}" ]; then
     DOWNLOAD_URL=https://minecraft.azureedge.net/bin-linux/bedrock-server-${VERSION}.zip
   fi
 
-  TMP_ZIP=/tmp/$(basename "${DOWNLOAD_URL}")
+  [[ $TMP_DIR != /tmp ]] && mkdir -p "$TMP_DIR"
+  TMP_ZIP="$TMP_DIR/$(basename "${DOWNLOAD_URL}")"
 
   echo "Downloading Bedrock server version ${VERSION} ..."
   if ! curl "${curlArgs[@]}" -o ${TMP_ZIP} -fsSL ${DOWNLOAD_URL}; then
@@ -119,7 +124,7 @@ if [ ! -f "bedrock_server-${VERSION}" ]; then
   # Do not overwrite existing files, which means the cleanup above needs to account for things
   # that MUST be replaced on upgrade
   unzip -q -n ${TMP_ZIP}
-  rm ${TMP_ZIP}
+  [[ $TMP_DIR != /tmp ]] && rm -rf "$TMP_DIR"
 
   chmod +x bedrock_server
   mv bedrock_server bedrock_server-${VERSION}
