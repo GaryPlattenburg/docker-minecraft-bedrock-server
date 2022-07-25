@@ -39,7 +39,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4.0.1
         with:
-          images: itzg/minecraft-bedrock-server
+          images: garyplattenburg/minecraft-bedrock-server
           flavor: |
             latest=${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
 
